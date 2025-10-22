@@ -1,0 +1,31 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 24.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run buildscript
+        run: npm run build
+
+      - name: Upload entire build folder to Vercel Blob
+        uses: dartilesm/vercel-blob-action@v2
+        with:
+          source: ".vitepress/dist/"
+          destination: "conversational-ai-for-the-curious/builds/"
+          read-write-token: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
