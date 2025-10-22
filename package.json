@@ -1,0 +1,28 @@
+{
+  "name": "conversational-ai-for-the-curious",
+  "version": "1.0.0",
+  "description": "这本开源小册子深入探索 Conversational AI（对话式 AI）的工程基础 —— 从实时流式传输与 WebRTC，到框架设计、级联与端到端架构、多模态交互，以及评估方法论。",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node scripts/pack.ts && npm run docs:build",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RTE-Dev/Conversational-AI-for-the-curious.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/RTE-Dev/Conversational-AI-for-the-curious/issues"
+  },
+  "homepage": "https://github.com/RTE-Dev/Conversational-AI-for-the-curious#readme",
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "vitepress": "^2.0.0-alpha.12"
+  }
+}
