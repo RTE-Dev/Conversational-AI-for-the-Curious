@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/RTE-Dev/Conversational-AI-for-the-curious#readme",
   "devDependencies": {
+    "@types/mdast": "^4.0.4",
     "@types/node": "^24.9.1",
+    "mdast-util-from-markdown": "^2.0.2",
     "vitepress": "^2.0.0-alpha.12"
   }
 }

@@ -1,8 +1,11 @@
+import type { Heading, Text } from 'mdast';
+import { fromMarkdown } from 'mdast-util-from-markdown';
 import fs from 'node:fs';
 import * as path from 'node:path';
 
 type Page = {
   name: string;
+  title: string;
   chapters: string[];
   content: string;
 }
@@ -16,7 +19,8 @@ async function findPages () {
 
   for (let dirent of direntList) {
     let page: Page = {
-      name: dirent.name,
+      name: dirent.name.startsWith('1-') ? 'index' : dirent.name,
+      title: '',
       chapters: [],
       content: '',
     };
@@ -46,7 +50,15 @@ async function findPages () {
         chapterContents.push(await fs.promises.readFile(chapter, 'utf-8'));
       }
 
-      page.content = chapterContents.join('\n\n\n');
+      page.content = chapterContents.join('\n\n\n')
+
+      const ast = fromMarkdown(page.content);
+      const heading = ((ast.children[0] as Heading).children[0] as Text)
+        .value
+        .replace(/\{#[^}]+}/, '')
+        .trim();
+
+      page.title = heading;
 
       await fs.promises.writeFile(path.join('docs', page.name + '.md'), page.content);
 
@@ -54,16 +66,14 @@ async function findPages () {
     }
   }
 
-  await fs.promises.copyFile('index.md', 'docs/index.md');
-
   return pages;
 }
 
 async function buildSidebar (pages: Page[]) {
   const sidebar = pages.map(page => {
     return {
-      link: '/' + page.name,
-      text: page.name,
+      link: page.name === 'index' ? '/' : ('/' + page.name),
+      text: page.title,
     };
   });
 
@@ -76,6 +86,9 @@ const sidebar: Sidebar = ${JSON.stringify(sidebar, null, 2)};
 export default sidebar;`;
 
   await fs.promises.writeFile('.vitepress/sidebar.generated.ts', template);
+
+  await fs.promises.mkdir('./docs/public/image', { recursive: true });
+  await fs.promises.cp('./image', './docs/public/image', { recursive: true });
 }
 
 findPages().then(buildSidebar);
