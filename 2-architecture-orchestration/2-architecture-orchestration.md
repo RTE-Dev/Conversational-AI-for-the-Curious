@@ -1,6 +1,7 @@
 # 2. Conversational AI 的架构与编排 {#2-architecture-orchestration}
 
 >**开发者导读**:
+
 > 本章介绍对话式 AI（Conversational AI）系统的核心结构与运行机制。 你将了解一个语音对话式 AI（Conversational AI）是如何从“听懂”到“回应”的，并认识两种主流架构：**级联模式（Cascaded）** 和 **端到端模式（End-to-End）**。 
 我们还将说明为什么仅仅连接 STT、LLM、TTS 并不足以构成一个真正可用的语音代理，以及为什么**编排（Orchestration）**是让系统“活起来”的关键。
 > 
