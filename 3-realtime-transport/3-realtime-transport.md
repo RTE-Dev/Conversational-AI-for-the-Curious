@@ -1,5 +1,6 @@
 # 3.实时传输：WebRTC 与 WebSocket 的选择 {#3-realtime-transport}
-> **开发者导读** 
+> **开发者导读**
+> 
 > 在构建 对话式 AI 时，首要的工程决策不是模型，而是通信。
 > “我该用 WebSocket 还是 WebRTC？” 这是几乎每个开发者都会问的问题。
 > WebSocket 简单易上手，是原型阶段的常用方案；WebRTC 则是更完整的实时媒体协议栈。
