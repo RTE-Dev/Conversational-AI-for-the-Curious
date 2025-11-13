@@ -28,16 +28,8 @@ export default defineConfig({
   head: [
     [
       'script',
-      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=GTM-M8NNQBCW' }
+      { async: '', src: 'https://www.googletagmanager.com/gtm.js?id=GTM-M8NNQBCW' }
     ],
-    [
-      'script',
-      {},
-      `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GTM-M8NNQBCW');`
-    ]
   ],
   lang: 'zh-CN'
 })
