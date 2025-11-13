@@ -25,5 +25,19 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/RTE-Dev/Conversational-AI-for-the-curious.git' }
     ]
   },
+  head: [
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=GTM-M8NNQBCW' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GTM-M8NNQBCW');`
+    ]
+  ],
   lang: 'zh-CN'
 })
